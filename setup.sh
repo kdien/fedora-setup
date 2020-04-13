@@ -3,6 +3,9 @@
 # Configure GNOME settings
 ./config-gnome.sh
 
+# Get pureline bash prompt
+git clone https://github.com/chris-marsh/pureline.git ~/pureline
+
 # Setup bash symlinks
 if [ -f ~/.bashrc ]; then
     mv ~/.bashrc ~/.bashrc.bak
@@ -16,6 +19,7 @@ git clone https://github.com/kdien/dotfiles.git ~/dotfiles
 ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/vim/.vimrc ~/.vimrc
 ln -s ~/dotfiles/alacritty ~/.config/alacritty
+ln -s ~/dotfiles/pureline/.pureline.conf ~/.pureline.conf
 
 # Enable additional repos
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
