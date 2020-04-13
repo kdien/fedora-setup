@@ -15,12 +15,6 @@ sudo dnf remove $(cat ./pkg.remove) -y
 # Install packages from repo
 sudo dnf install $(cat ./pkg.add) -y
 
-# Install PureLine Bash Prompt
-mkdir -p ~/pureline
-git clone https://github.com/chris-marsh/pureline.git ~/pureline
-cp ~/pureline/configs/powerline_full_256col.conf ~/.pureline.conf
-echo -e ". ~/pureline/pureline ~/.pureline.conf\n" >> ~/.bashrc
-
 # Extract Meslo fonts
 mkdir -p ~/.fonts/meslo-nf
 tar -xzvf meslo-nf.tar.gz -C ~/.fonts/meslo-nf
