@@ -3,6 +3,14 @@
 # Configure GNOME settings
 ./config-gnome.sh
 
+# Setup bash symlinks
+if [ -f ~/.bashrc ]; then
+    mv ~/.bashrc ~/.bashrc.bak
+fi
+ln -s ~/fedora-setup/bash/.bashrc ~/.bashrc
+ln -s ~/fedora-setup/bash/.bash_aliases ~/.bash_aliases
+ln -s ~/fedora-setup/bash/.bash_functions ~/.bash_functions
+
 # Enable additional repos
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 sudo dnf copr enable dawid/better_fonts -y
