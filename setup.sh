@@ -1,25 +1,23 @@
 #!/usr/bin/bash
 
 # Configure GNOME settings
-./config-gnome.sh
+[ $XDG_CURRENT_DESKTOP == 'GNOME' ] && ./config-gnome.sh
 
 # Get pureline bash prompt
-git clone https://github.com/chris-marsh/pureline.git ~/pureline
+git clone https://github.com/chris-marsh/pureline.git $HOME/pureline
 
 # Setup bash symlinks
-if [ -f ~/.bashrc ]; then
-    mv ~/.bashrc ~/.bashrc.bak
-fi
-ln -s ~/fedora-setup/bash/.bashrc ~/.bashrc
-ln -s ~/fedora-setup/bash/.bash_aliases ~/.bash_aliases
-ln -s ~/fedora-setup/bash/.bash_functions ~/.bash_functions
+[ -f $HOME/.bashrc ] && mv $HOME/.bashrc $HOME/.bashrc.bak
+ln -sf ./bash/.bashrc $HOME/.bashrc
+ln -sf ./bash/.bash_aliases $HOME/.bash_aliases
+ln -sf ./bash/.bash_functions $HOME/.bash_functions
 
 # Clone dotfiles and setup symlinks
-git clone https://github.com/kdien/dotfiles.git ~/dotfiles
-ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/vim/.vimrc ~/.vimrc
-ln -s ~/dotfiles/alacritty ~/.config/alacritty
-ln -s ~/dotfiles/pureline/.pureline.conf ~/.pureline.conf
+git clone https://github.com/kdien/dotfiles.git $HOME/dotfiles
+ln -sf $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
+ln -sf $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
+ln -sf $HOME/dotfiles/alacritty $HOME/.config/alacritty
+ln -sf $HOME/dotfiles/pureline/.pureline.conf $HOME/.pureline.conf
 
 # Enable additional repos
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
@@ -34,12 +32,12 @@ sudo dnf remove $(cat ./pkg.remove) -y
 sudo dnf install $(cat ./pkg.add) -y
 
 # Extract Meslo fonts
-mkdir -p ~/.fonts/meslo-nf
-tar -xzvf meslo-nf.tar.gz -C ~/.fonts/meslo-nf
+mkdir -p $HOME/.fonts/meslo-nf
+tar -xzvf meslo-nf.tar.gz -C $HOME/.fonts/meslo-nf
 
 # Create custom font config
-mkdir -p ~/.config/fontconfig
-cp fonts.conf ~/.config/fontconfig
+mkdir -p $HOME/.config/fontconfig
+cp fonts.conf $HOME/.config/fontconfig
 
 # Install Google Chrome
 sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -y
@@ -57,7 +55,7 @@ sudo dnf install powershell -y
 
 # Add Insync repo and install
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
-echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/30/\ngpgcheck=1\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key\nenabled=1\nmetadata_expire=120m\n" | sudo tee /etc/yum.repos.d/insync.repo
+echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/$releasever/\ngpgcheck=1\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key\nenabled=1\nmetadata_expire=120m\n" | sudo tee /etc/yum.repos.d/insync.repo
 dnf check-update
 sudo dnf install insync -y
 
