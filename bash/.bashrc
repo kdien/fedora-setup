@@ -17,15 +17,15 @@ export PATH
 
 # User specific aliases and functions
 #export PS1="\[\033[38;5;39m\][\u@\h]\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;10m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\\[$(tput sgr0)\]\[\033[36;1;11m\]\$(parse_git_branch)\[$(tput sgr0)\]\[\033[38;5;15m\]\n\[$(tput sgr0)\]\[\033[38;5;11m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
-export JAVA_HOME=/etc/alternatives/java_sdk
+export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
 
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
+if [ -f $HOME/.bash_functions ]; then
+    . $HOME/.bash_functions
 fi
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
 fi
 
-. ~/pureline/pureline ~/.pureline.conf
+. $HOME/pureline/pureline $HOME/.pureline.conf
 
