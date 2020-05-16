@@ -5,6 +5,7 @@ dconf-editor
 fontconfig-enhanced-defaults
 fontconfig-font-replacements
 git
+gnome-extensions-app
 google-roboto-fonts
 htop
 httpd
@@ -21,4 +22,5 @@ tldr
 transmission
 vim
 vlc
+xclip
 
