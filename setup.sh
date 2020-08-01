@@ -1,13 +1,13 @@
 #!/usr/bin/bash
 
 # Configure GNOME settings
-[ $XDG_CURRENT_DESKTOP == 'GNOME' ] && ./config-gnome.sh
+[[ $XDG_CURRENT_DESKTOP == 'GNOME' ]] && ./config-gnome.sh
 
 # Get pureline bash prompt
 git clone https://github.com/chris-marsh/pureline.git $HOME/pureline
 
 # Setup bash symlinks
-[ -f $HOME/.bashrc ] && mv $HOME/.bashrc $HOME/.bashrc.bak
+[[ -f $HOME/.bashrc ]] && mv $HOME/.bashrc $HOME/.bashrc.bak
 ln -sf ./bash/.bashrc $HOME/.bashrc
 ln -sf ./bash/.bash_aliases $HOME/.bash_aliases
 ln -sf ./bash/.bash_functions $HOME/.bash_functions
