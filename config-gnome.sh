@@ -33,8 +33,6 @@ gsettings set org.gnome.shell.keybindings toggle-message-tray ['<Super>m']
 
 
 # GNOME Applications settings
-sudo sed -i "s/^Exec=gnome-terminal$/Exec=gnome-terminal --window --maximize/" /usr/share/applications/org.gnome.Terminal.desktop
-
 gsettings set org.gnome.gedit.preferences.editor auto-indent true
 gsettings set org.gnome.gedit.preferences.editor bracket-matching true
 gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
@@ -44,3 +42,4 @@ gsettings set org.gnome.gedit.preferences.editor insert-spaces true
 gsettings set org.gnome.gedit.preferences.editor scheme 'oblivion'
 gsettings set org.gnome.gedit.preferences.editor tabs-size 4
 gsettings set org.gnome.gedit.preferences.editor wrap-last-split-mode 'word'
+
