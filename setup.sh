@@ -35,9 +35,9 @@ sudo dnf install $(cat ./pkg.add) -y
 mkdir -p $HOME/.fonts/meslo-nf
 tar -xzvf meslo-nf.tar.gz -C $HOME/.fonts/meslo-nf
 
-# Create custom font config
-mkdir -p $HOME/.config/fontconfig
-cp fonts.conf $HOME/.config/fontconfig
+# Symlink fontconfig
+rm -rf $HOME/.config/fontconfig
+ln -s $HOME/dotfiles/fontconfig $HOME/.config/fontconfig
 
 # Install Google Chrome
 sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -y
