@@ -15,21 +15,21 @@ gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enable
 gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 gsettings set org.gnome.desktop.privacy remove-old-trash-files true
 gsettings set org.gnome.desktop.sound input-feedback-sounds false
-gsettings set org.gnome.desktop.wm.keybindings close ['<Super>q']
-gsettings set org.gnome.desktop.wm.keybindings show-desktop ['<Super>d']
+gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q']"
+gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
 gsettings set org.gnome.mutter attach-modal-dialogs false
 gsettings set org.gnome.mutter center-new-windows true
-gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot-clip ['<Shift><Super>s']
-gsettings set org.gnome.settings-daemon.plugins.media-keys control-center ['<Super>i']
-gsettings set org.gnome.settings-daemon.plugins.media-keys home ['<Super>e']
+gsettings set org.gnome.settings-daemon.plugins.media-keys area-screenshot-clip "['<Shift><Super>s']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys control-center "['<Super>i']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
-gsettings set org.gnome.shell.keybindings toggle-message-tray ['<Super>m']
+gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Super>m']"
 
 
 # GNOME Applications settings
