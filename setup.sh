@@ -19,6 +19,14 @@ ln -sf $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
 ln -sf $HOME/dotfiles/alacritty $HOME/.config/alacritty
 ln -sf $HOME/dotfiles/pureline/.pureline.conf $HOME/.pureline.conf
 
+# Extract Meslo fonts
+mkdir -p $HOME/.fonts/meslo-nf
+tar -xzvf meslo-nf.tar.gz -C $HOME/.fonts/meslo-nf
+
+# Symlink fontconfig
+rm -rf $HOME/.config/fontconfig
+ln -s $HOME/dotfiles/fontconfig $HOME/.config/fontconfig
+
 # Enable additional repos
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 sudo dnf copr enable dawid/better_fonts -y
@@ -31,13 +39,10 @@ sudo dnf remove $(cat ./pkg.remove) -y
 # Install packages from repo
 sudo dnf install $(cat ./pkg.add) -y
 
-# Extract Meslo fonts
-mkdir -p $HOME/.fonts/meslo-nf
-tar -xzvf meslo-nf.tar.gz -C $HOME/.fonts/meslo-nf
-
-# Symlink fontconfig
-rm -rf $HOME/.config/fontconfig
-ln -s $HOME/dotfiles/fontconfig $HOME/.config/fontconfig
+# Install Brave
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo dnf install brave-browser -y
 
 # Install Google Chrome
 sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -y
