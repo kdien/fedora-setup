@@ -16,6 +16,7 @@ export PATH
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
+export EDITOR=vim
 export JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
 
 if [ -f $HOME/.bash_functions ]; then
