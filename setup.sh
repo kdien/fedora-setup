@@ -68,3 +68,6 @@ sudo dnf install insync -y
 # Install Viber
 sudo dnf install https://download.cdn.viber.com/desktop/Linux/viber.rpm -y
 
+# Install Zoom
+sudo dnf install https://zoom.us/client/latest/zoom_x86_64.rpm -y
+
