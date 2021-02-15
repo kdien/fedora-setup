@@ -1,8 +1,5 @@
 #!/usr/bin/bash
 
-# Configure GNOME settings
-[[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]] && sudo dnf install gnome-tweaks gnome-extensions-app -y && ./config-gnome.sh
-
 # Get pureline bash prompt
 git clone https://github.com/chris-marsh/pureline.git $HOME/pureline
 
@@ -18,6 +15,16 @@ ln -sf $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
 ln -sf $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
 ln -sf $HOME/dotfiles/alacritty $HOME/.config/alacritty
 ln -sf $HOME/dotfiles/pureline/.pureline.conf $HOME/.pureline.conf
+
+# Configure GNOME settings
+if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
+    sudo dnf install gnome-tweaks gnome-extensions-app -y
+    ./config-gnome.sh
+    mkdir -p $HOME/bin
+    for file in $HOME/dotfiles/gnome/*; do
+        ln -sf "$file" $HOME/bin/"${file##/*}"
+    done
+fi
 
 # Extract Meslo fonts
 mkdir -p $HOME/.fonts/meslo-nf
