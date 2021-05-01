@@ -18,7 +18,7 @@ ln -sf $HOME/dotfiles/pureline/.pureline.conf $HOME/.pureline.conf
 
 # Configure GNOME settings
 if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
-    sudo dnf install gnome-tweaks gnome-extensions-app -y
+    sudo dnf install gnome-tweaks gnome-extensions-app gnome-shell-extension-appindicator -y
     ./config-gnome.sh
     mkdir -p $HOME/bin
     for file in $HOME/dotfiles/gnome/*; do
