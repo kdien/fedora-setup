@@ -18,6 +18,10 @@ gsettings set org.gnome.desktop.session idle-delay 900
 gsettings set org.gnome.desktop.sound input-feedback-sounds false
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q']"
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "[]"
+gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
 gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
 gsettings set org.gnome.mutter attach-modal-dialogs false
