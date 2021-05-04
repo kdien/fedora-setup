@@ -8,8 +8,8 @@ git
 google-roboto-fonts
 htop
 httpd
-java-11-openjdk-devel
 java-1.8.0-openjdk-devel
+java-11-openjdk-devel
 ksnip
 maven
 neofetch
@@ -17,6 +17,7 @@ net-tools
 nodejs
 npm
 remmina
+ShellCheck
 steam
 timeshift
 tldr
@@ -24,4 +25,3 @@ transmission
 vim
 vlc
 xclip
-
