@@ -46,6 +46,16 @@ sudo dnf remove $(cat ./pkg.remove) -y
 # Install packages from repo
 sudo dnf install $(cat ./pkg.add) -y
 
+# Install Firefox Developer Edition
+curl -L "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-CA" -o $HOME/Downloads/firefox-dev.tar.bz2
+tar -xvjf $HOME/Downloads/firefox-dev.tar.bz2
+sudo rm -rf /opt/firefox-dev
+sudo mv firefox /opt/firefox-dev
+sudo mkdir -p /usr/local/bin
+sudo ln -s /opt/firefox-dev/firefox /usr/local/bin/firefox-dev
+sudo install -o root -g root -m 644 firefox-dev.desktop /usr/share/applications/firefox-dev.desktop
+rm -f $HOME/Downloads/firefox-dev.tar.bz2
+
 # Install MS Edge
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
