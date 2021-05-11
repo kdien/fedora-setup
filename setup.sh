@@ -65,6 +65,8 @@ sudo dnf install microsoft-edge-dev -y
 
 # Install Google Chrome
 sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -y
+# Override default desktop entry to enable dark mode
+sudo install -o root -g root -m 644 google-chrome.desktop /usr/local/share/applications/google-chrome.desktop
 
 # Add VS Code repo and install
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc\n" | sudo tee /etc/yum.repos.d/vscode.repo
