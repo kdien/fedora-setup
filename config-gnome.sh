@@ -32,8 +32,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'suspend'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
-gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
-gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
+gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'
+gsettings set org.gnome.desktop.interface font-hinting 'slight'
 gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Super>m']"
 
 
