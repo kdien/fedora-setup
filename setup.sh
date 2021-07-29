@@ -15,6 +15,7 @@ ln -sf $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
 ln -sf $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
 ln -sf $HOME/dotfiles/alacritty $HOME/.config/alacritty
 ln -sf $HOME/dotfiles/pureline/.pureline.conf $HOME/.pureline.conf
+ln -sf $HOME/dotfiles/powershell $HOME/.config/powershell
 
 # Configure GNOME settings
 if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
