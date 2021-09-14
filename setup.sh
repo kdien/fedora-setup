@@ -47,15 +47,15 @@ sudo dnf remove $(cat ./pkg.remove) -y
 # Install packages from repo
 sudo dnf install $(cat ./pkg.add) -y
 
-# Install Firefox Developer Edition
-#curl -L "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-CA" -o $HOME/Downloads/firefox-dev.tar.bz2
-#tar -xvjf $HOME/Downloads/firefox-dev.tar.bz2
-#sudo rm -rf /opt/firefox-dev
-#sudo mv firefox /opt/firefox-dev
-#sudo mkdir -p /usr/local/bin
-#sudo ln -s /opt/firefox-dev/firefox /usr/local/bin/firefox-dev
-#sudo install -o root -g root -m 644 firefox-dev.desktop /usr/share/applications/firefox-dev.desktop
-#rm -f $HOME/Downloads/firefox-dev.tar.bz2
+# Install Firefox from Mozilla
+curl -L "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-CA" -o $HOME/Downloads/firefox.tar.bz2
+tar -xvjf $HOME/Downloads/firefox.tar.bz2
+sudo rm -rf /opt/firefox
+sudo mv firefox /opt/firefox
+sudo mkdir -p /usr/local/bin
+sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
+sudo install -o root -g root -m 644 firefox.desktop /usr/share/applications/firefox.desktop
+rm -f $HOME/Downloads/firefox.tar.bz2
 
 # Install Brave browser
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
