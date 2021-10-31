@@ -65,9 +65,9 @@ sudo dnf install brave-browser -y
 # Install MS Edge
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/edge
-sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge-beta.repo
+sudo mv /etc/yum.repos.d/packages.microsoft.com_yumrepos_edge.repo /etc/yum.repos.d/microsoft-edge.repo
 dnf check-update
-sudo dnf install microsoft-edge-beta -y
+sudo dnf install microsoft-edge-stable -y
 
 # Install Google Chrome
 sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -y
