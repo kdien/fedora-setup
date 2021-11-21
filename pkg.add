@@ -2,8 +2,6 @@ alacritty
 ansible
 bat
 dconf-editor
-fontconfig-enhanced-defaults
-fontconfig-font-replacements
 git
 git-delta
 google-roboto-fonts
