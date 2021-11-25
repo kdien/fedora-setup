@@ -27,9 +27,9 @@ if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
     done
 fi
 
-# Extract Meslo fonts
+# Install Meslo fonts
 mkdir -p $HOME/.fonts/meslo-nf
-tar -xzvf meslo-nf.tar.gz -C $HOME/.fonts/meslo-nf
+cp $HOME/dotfiles/fonts/Meslo*.ttf $HOME/.fonts/meslo-nf
 
 # Symlink fontconfig
 rm -rf $HOME/.config/fontconfig
