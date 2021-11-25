@@ -87,6 +87,9 @@ sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
 echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/$(rpm -E %fedora)/\ngpgcheck=1\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key\nenabled=1\nmetadata_expire=120m\n" | sudo tee /etc/yum.repos.d/insync.repo
 dnf check-update
 sudo dnf install insync -y
+if command -v nautilus &> /dev/null; then
+    sudo dnf install insync-nautilus -y
+fi
 
 # Install Viber
 sudo dnf install https://download.cdn.viber.com/desktop/Linux/viber.rpm -y
