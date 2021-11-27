@@ -97,3 +97,15 @@ sudo dnf install https://download.cdn.viber.com/desktop/Linux/viber.rpm -y
 # Install Zoom
 sudo dnf install https://zoom.us/client/latest/zoom_x86_64.rpm -y
 
+# Adobe Reader through Wine
+export WINEARCH=win32
+winetricks atmlib
+winetricks riched20
+winetricks wsh57
+winetricks mspatcha
+sudo mkdir -p /usr/share/fonts/segoe-ui
+sudo cp $HOME/dotfiles/fonts/segoeui*.ttf /usr/share/fonts/segoe-ui/
+curl -kL http://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/1901020099/AcroRdrDC1901020099_en_US.exe -o $HOME/Downloads/adobereader.exe
+wine $HOME/Downloads/adobereader.exe
+echo 'After installing Adobe Reader, disable auto updates through Regedit, HKEY_LOCAL_MACHINE\Software\Adobe\Adobe ARM\Legacy\Reader\{key} and set Mode=0'
+
