@@ -92,7 +92,14 @@ if command -v nautilus &> /dev/null; then
 fi
 
 # Install Viber
-sudo dnf install https://download.cdn.viber.com/desktop/Linux/viber.rpm -y
+sudo rm -rf /opt/viber
+sudo mkdir -p /opt/viber
+curl https://download.cdn.viber.com/desktop/Linux/viber.AppImage -o $HOME/Downloads/viber.AppImage
+chmod +x $HOME/Downloads/viber.AppImage
+sudo install -o root -g root -m 755 $HOME/Downloads/viber.AppImage /opt/viber/
+sudo install -o root -g root -m 644 viber.png /opt/viber/
+sudo install -o root -g root -m 644 viber.desktop /usr/share/applications/viber.desktop
+rm -f $HOME/Downloads/viber.AppImage
 
 # Install Zoom
 sudo dnf install https://zoom.us/client/latest/zoom_x86_64.rpm -y
