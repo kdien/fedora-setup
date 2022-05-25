@@ -2,6 +2,7 @@
 gsettings set org.gnome.desktop.datetime automatic-timezone true
 gsettings set org.gnome.desktop.interface clock-format '12h'
 gsettings set org.gnome.desktop.interface clock-show-weekday true
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface gtk-enable-primary-paste false
 gsettings set org.gnome.desktop.interface gtk-im-module 'gtk-im-context-simple'
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
