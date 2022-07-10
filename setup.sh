@@ -80,6 +80,11 @@ curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.
 dnf check-update
 sudo dnf install powershell -y
 
+# Install tfenv and Terraform
+git clone --depth=1 https://github.com/tfutils/tfenv.git $HOME/.tfenv
+$HOME/.tfenv/bin/tfenv install latest
+$HOME/.tfenv/bin/tfenv use latest
+
 # Add Insync repo and install
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
 echo -e "[insync]\nname=insync repo\nbaseurl=http://yum.insync.io/fedora/$(rpm -E %fedora)/\ngpgcheck=1\ngpgkey=https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key\nenabled=1\nmetadata_expire=120m\n" | sudo tee /etc/yum.repos.d/insync.repo
