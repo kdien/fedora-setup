@@ -2,6 +2,7 @@ alacritty
 ansible
 bat
 dconf-editor
+fzf
 git
 git-delta
 google-roboto-fonts
