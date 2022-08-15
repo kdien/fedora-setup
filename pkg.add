@@ -18,6 +18,7 @@ net-tools
 nodejs
 npm
 okular
+python3-ansible-lint
 remmina
 rsms-inter-fonts
 ShellCheck
