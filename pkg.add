@@ -2,6 +2,7 @@ alacritty
 ansible
 bat
 dconf-editor
+fd-find
 fzf
 g++
 git
@@ -13,9 +14,9 @@ java-1.8.0-openjdk-devel
 java-11-openjdk-devel
 jq
 ksnip
+libstdc++
 libstdc++-devel
 libstdc++-static
-libstdc++
 maven
 neofetch
 net-tools
@@ -24,6 +25,7 @@ npm
 okular
 python3-ansible-lint
 remmina
+ripgrep
 rsms-inter-fonts
 ShellCheck
 solaar
