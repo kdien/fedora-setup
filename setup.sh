@@ -9,6 +9,7 @@ ln -sf $HOME/fedora-setup/.bashrc $HOME/.bashrc
 
 # Clone dotfiles and setup symlinks
 git clone https://github.com/kdien/dotfiles.git $HOME/dotfiles
+ln -sf $HOME/dotfiles/shell/.profile $HOME/.profile
 ln -sf $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
 ln -sf $HOME/dotfiles/neovim $HOME/.config/nvim
 ln -sf $HOME/dotfiles/alacritty $HOME/.config/alacritty
