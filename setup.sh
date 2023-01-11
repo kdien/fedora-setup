@@ -12,7 +12,7 @@ git clone https://github.com/kdien/dotfiles.git $HOME/dotfiles
 ln -sf $HOME/dotfiles/shell/.profile $HOME/.profile
 ln -sf $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
 ln -sf $HOME/dotfiles/neovim $HOME/.config/nvim
-ln -sf $HOME/dotfiles/alacritty $HOME/.config/alacritty
+ln -sf $HOME/dotfiles/kitty $HOME/.config/kitty
 ln -sf $HOME/dotfiles/pureline/.pureline.conf $HOME/.pureline.conf
 ln -sf $HOME/dotfiles/powershell $HOME/.config/powershell
 
