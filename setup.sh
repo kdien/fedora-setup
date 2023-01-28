@@ -1,58 +1,55 @@
-#!/usr/bin/bash
-
-# Get pureline bash prompt
-git clone https://github.com/chris-marsh/pureline.git $HOME/pureline
+#!/usr/bin/env bash
 
 # Setup bash symlinks
-[[ -f $HOME/.bashrc ]] && mv $HOME/.bashrc $HOME/.bashrc.bak
-ln -sf $HOME/fedora-setup/.bashrc $HOME/.bashrc
+[[ -f "$HOME"/.bashrc ]] && mv "$HOME"/.bashrc "$HOME"/.bashrc.bak
+ln -sf "$HOME"/fedora-setup/.bashrc "$HOME"/.bashrc
 
 # Clone dotfiles and setup symlinks
-git clone https://github.com/kdien/dotfiles.git $HOME/dotfiles
-ln -sf $HOME/dotfiles/shell/.profile $HOME/.profile
-ln -sf $HOME/dotfiles/tmux/.tmux.conf $HOME/.tmux.conf
-ln -sf $HOME/dotfiles/neovim $HOME/.config/nvim
-ln -sf $HOME/dotfiles/kitty $HOME/.config/kitty
-ln -sf $HOME/dotfiles/pureline/.pureline.conf $HOME/.pureline.conf
-ln -sf $HOME/dotfiles/powershell $HOME/.config/powershell
+git clone https://github.com/kdien/dotfiles.git "$HOME"/dotfiles
+ln -sf "$HOME"/dotfiles/shell/.profile "$HOME"/.profile
+ln -sf "$HOME"/dotfiles/tmux/.tmux.conf "$HOME"/.tmux.conf
+ln -sf "$HOME"/dotfiles/neovim "$HOME"/.config/nvim
+ln -sf "$HOME"/dotfiles/kitty "$HOME"/.config/kitty
+ln -sf "$HOME"/dotfiles/pureline/.pureline.conf "$HOME"/.pureline.conf
+ln -sf "$HOME"/dotfiles/powershell "$HOME"/.config/powershell
 
 # Configure GNOME settings
 if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
     sudo dnf install gnome-tweaks gnome-extensions-app gnome-shell-extension-appindicator -y
     ./config-gnome.sh
-    mkdir -p $HOME/bin
-    for file in $HOME/dotfiles/gnome/*; do
-        ln -sf "$file" $HOME/bin/"${file##/*}"
+    mkdir -p "$HOME"/bin
+    for file in "$HOME"/dotfiles/gnome/*; do
+        ln -sf "$file" "$HOME/bin/${file##/*}"
     done
 fi
 
 # Install Meslo fonts
-mkdir -p $HOME/.fonts/meslo-nf
-cp $HOME/dotfiles/fonts/Meslo*.ttf $HOME/.fonts/meslo-nf
+sudo mkdir -p /usr/share/fonts/meslo-nf
+sudo cp "$HOME"/dotfiles/fonts/Meslo*.ttf "$HOME"/.fonts/meslo-nf
 
 # Symlink fontconfig
-rm -rf $HOME/.config/fontconfig
-ln -s $HOME/dotfiles/fontconfig $HOME/.config/fontconfig
+rm -rf "$HOME"/.config/fontconfig
+ln -s "$HOME"/dotfiles/fontconfig "$HOME"/.config/fontconfig
 
 # Enable additional repos
-sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+sudo dnf install "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm" -y
 dnf check-update
 
 # Remove bloat
-sudo dnf remove $(cat ./pkg.remove) -y
+sudo dnf remove "$(cat ./pkg.remove)" -y
 
 # Install packages from repo
-sudo dnf install $(cat ./pkg.add) -y
+sudo dnf install "$(cat ./pkg.add)" -y
 
 # Install Firefox from Mozilla
-curl -L "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-CA" -o $HOME/Downloads/firefox.tar.bz2
-tar -xvjf $HOME/Downloads/firefox.tar.bz2
+curl -L "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-CA" -o "$HOME"/Downloads/firefox.tar.bz2
+tar -xvjf "$HOME"/Downloads/firefox.tar.bz2
 sudo rm -rf /opt/firefox
 sudo mv firefox /opt/firefox
 sudo mkdir -p /usr/local/bin
 sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 sudo install -o root -g root -m 644 firefox.desktop /usr/share/applications/firefox.desktop
-rm -f $HOME/Downloads/firefox.tar.bz2
+rm -f "$HOME"/Downloads/firefox.tar.bz2
 
 # Install Brave browser
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
@@ -82,9 +79,9 @@ dnf check-update
 sudo dnf install powershell -y
 
 # Install tfenv and Terraform
-git clone --depth=1 https://github.com/tfutils/tfenv.git $HOME/.tfenv
-$HOME/.tfenv/bin/tfenv install latest
-$HOME/.tfenv/bin/tfenv use latest
+git clone --depth=1 https://github.com/tfutils/tfenv.git "$HOME"/.tfenv
+"$HOME"/.tfenv/bin/tfenv install latest
+"$HOME"/.tfenv/bin/tfenv use latest
 
 # Add Insync repo and install
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
@@ -98,25 +95,25 @@ fi
 # Install Viber
 sudo rm -rf /opt/viber
 sudo mkdir -p /opt/viber
-curl https://download.cdn.viber.com/desktop/Linux/viber.AppImage -o $HOME/Downloads/viber.AppImage
-chmod +x $HOME/Downloads/viber.AppImage
-sudo install -o root -g root -m 755 $HOME/Downloads/viber.AppImage /opt/viber/
+curl https://download.cdn.viber.com/desktop/Linux/viber.AppImage -o "$HOME"/Downloads/viber.AppImage
+chmod +x "$HOME"/Downloads/viber.AppImage
+sudo install -o root -g root -m 755 "$HOME"/Downloads/viber.AppImage /opt/viber/
 sudo install -o root -g root -m 644 viber.png /opt/viber/
 sudo install -o root -g root -m 644 viber.desktop /usr/share/applications/viber.desktop
-rm -f $HOME/Downloads/viber.AppImage
+rm -f "$HOME"/Downloads/viber.AppImage
 
 # Install Zoom
 sudo dnf install https://zoom.us/client/latest/zoom_x86_64.rpm -y
 
 # Adobe Reader through Wine
-export WINEARCH=win32
-winetricks atmlib
-winetricks riched20
-winetricks wsh57
-winetricks mspatcha
-sudo mkdir -p /usr/share/fonts/segoe-ui
-sudo cp $HOME/dotfiles/fonts/segoeui*.ttf /usr/share/fonts/segoe-ui/
-curl -kL http://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/1901020099/AcroRdrDC1901020099_en_US.exe -o $HOME/Downloads/adobereader.exe
-wine $HOME/Downloads/adobereader.exe
-echo 'After installing Adobe Reader, disable auto updates through Regedit, HKEY_LOCAL_MACHINE\Software\Adobe\Adobe ARM\Legacy\Reader\{key} and set Mode=0'
+# export WINEARCH=win32
+# winetricks atmlib
+# winetricks riched20
+# winetricks wsh57
+# winetricks mspatcha
+# sudo mkdir -p /usr/share/fonts/segoe-ui
+# sudo cp "$HOME"/dotfiles/fonts/segoeui*.ttf /usr/share/fonts/segoe-ui/
+# curl -kL http://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/1901020099/AcroRdrDC1901020099_en_US.exe -o "$HOME"/Downloads/adobereader.exe
+# wine "$HOME"/Downloads/adobereader.exe
+# echo 'After installing Adobe Reader, disable auto updates through Regedit, HKEY_LOCAL_MACHINE\Software\Adobe\Adobe ARM\Legacy\Reader\{key} and set Mode=0'
 
