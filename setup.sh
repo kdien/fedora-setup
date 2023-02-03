@@ -73,11 +73,6 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 dnf check-update
 sudo dnf install code -y
 
-# Install PowerShell Core
-curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
-dnf check-update
-sudo dnf install powershell -y
-
 # Install tfenv and Terraform
 git clone --depth=1 https://github.com/tfutils/tfenv.git "$HOME"/.tfenv
 "$HOME"/.tfenv/bin/tfenv install latest
