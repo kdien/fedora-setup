@@ -1,5 +1,6 @@
 ansible
 bat
+cmake
 dconf-editor
 fd-find
 fzf

@@ -41,6 +41,29 @@ sudo dnf remove "$(cat ./pkg.remove)" -y
 # Install packages from repo
 sudo dnf install "$(cat ./pkg.add)" -y
 
+# Set up interception-tools and caps2esc
+sudo dnf copr enable fszymanski/interception-tools -y
+sudo dnf install interception-tools -y
+
+git clone https://gitlab.com/interception/linux/plugins/caps2esc.git
+cd caps2esc || return
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+sudo cp build/caps2esc /usr/local/bin
+cd ..
+rm -rf caps2esc
+
+sudo mkdir -p /etc/interception/udevmon.d
+sudo tee /etc/interception/udevmon.d/caps2esc.yaml <<'EOF'
+- JOB: intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE
+  DEVICE:
+    EVENTS:
+      EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+    LINK: /dev/input/by-path/.*-event-kbd
+EOF
+
+sudo systemctl enable --now udevmon
+
 # Install Firefox from Mozilla
 curl -L "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-CA" -o "$HOME"/Downloads/firefox.tar.bz2
 tar -xvjf "$HOME"/Downloads/firefox.tar.bz2
