@@ -73,6 +73,7 @@ sudo mkdir -p /usr/local/bin
 sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 sudo install -o root -g root -m 644 firefox.desktop /usr/share/applications/firefox.desktop
 rm -f "$HOME"/Downloads/firefox.tar.bz2
+echo MOZ_ENABLE_WAYLAND=1 | sudo tee -a /etc/environment
 
 # Install Brave browser
 sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
