@@ -71,7 +71,7 @@ sudo rm -rf /opt/firefox
 sudo mv firefox /opt/firefox
 sudo mkdir -p /usr/local/bin
 sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
-sudo install -o root -g root -m 644 firefox.desktop /usr/share/applications/firefox.desktop
+sudo install -o root -g root -m 644 desktop-entries/firefox.desktop /usr/share/applications/firefox.desktop
 rm -f "$HOME"/Downloads/firefox.tar.bz2
 echo MOZ_ENABLE_WAYLAND=1 | sudo tee -a /etc/environment
 
@@ -90,7 +90,7 @@ sudo dnf install microsoft-edge-stable -y
 # Install Google Chrome
 sudo dnf install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -y
 # Override default desktop entry to enable dark mode
-sudo install -o root -g root -m 644 google-chrome.desktop /usr/local/share/applications/google-chrome.desktop
+sudo install -o root -g root -m 644 desktop-entries/google-chrome.desktop /usr/local/share/applications/google-chrome.desktop
 
 # Add VS Code repo and install
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc\n" | sudo tee /etc/yum.repos.d/vscode.repo
@@ -118,7 +118,7 @@ curl https://download.cdn.viber.com/desktop/Linux/viber.AppImage -o "$HOME"/Down
 chmod +x "$HOME"/Downloads/viber.AppImage
 sudo install -o root -g root -m 755 "$HOME"/Downloads/viber.AppImage /opt/viber/
 sudo install -o root -g root -m 644 viber.png /opt/viber/
-sudo install -o root -g root -m 644 viber.desktop /usr/share/applications/viber.desktop
+sudo install -o root -g root -m 644 desktop-entries/viber.desktop /usr/share/applications/viber.desktop
 rm -f "$HOME"/Downloads/viber.AppImage
 
 # Install Zoom
