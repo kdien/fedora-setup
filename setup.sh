@@ -55,7 +55,7 @@ rm -rf caps2esc
 
 sudo mkdir -p /etc/interception/udevmon.d
 sudo tee /etc/interception/udevmon.d/caps2esc.yaml <<'EOF'
-- JOB: intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE
+- JOB: intercept -g $DEVNODE | caps2esc -m 1 | uinput -d $DEVNODE
   DEVICE:
     EVENTS:
       EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
