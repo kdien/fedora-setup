@@ -37,10 +37,10 @@ sudo dnf install -y \
     "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 
 # Remove bloat
-sudo dnf remove -y "$(cat ./pkg.remove)"
+sudo dnf remove -y $(cat ./pkg.remove)
 
 # Install packages from repo
-sudo dnf install -y "$(cat ./pkg.add)"
+sudo dnf install -y $(cat ./pkg.add)
 
 # Set up interception-tools and caps2esc
 sudo dnf copr enable -y fszymanski/interception-tools
