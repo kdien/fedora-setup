@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
 # Source bash config
-cat >> "$HOME"/.bashrc <<'EOF'
-[[ -f "$HOME"/dotfiles/bash/.bash_common ]] && . "$HOME"/dotfiles/bash/.bash_common
+cat >> "$HOME/.bashrc" <<'EOF'
+[[ -f "$HOME/dotfiles/bash/.bash_common" ]] && . "$HOME/dotfiles/bash/.bash_common"
 EOF
 
 # Clone dotfiles and setup symlinks
-git clone https://github.com/kdien/dotfiles.git "$HOME"/dotfiles
-ln -sf "$HOME"/dotfiles/tmux/.tmux.conf "$HOME"/.tmux.conf
-ln -sf "$HOME"/dotfiles/neovim "$HOME"/.config/nvim
-ln -sf "$HOME"/dotfiles/alacritty "$HOME"/.config/alacritty
-ln -sf "$HOME"/dotfiles/kitty "$HOME"/.config/kitty
-ln -sf "$HOME"/dotfiles/powershell "$HOME"/.config/powershell
+git clone https://github.com/kdien/dotfiles.git "$HOME/dotfiles"
+ln -sf "$HOME/dotfiles/tmux/.tmux.conf" "$HOME/.tmux.conf"
+ln -sf "$HOME/dotfiles/neovim" "$HOME/.config/nvim"
+ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/alacritty"
+ln -sf "$HOME/dotfiles/kitty" "$HOME/.config/kitty"
+ln -sf "$HOME/dotfiles/powershell" "$HOME/.config/powershell"
 
 # Configure GNOME settings
 if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
     sudo dnf install -y gnome-tweaks gnome-extensions-app gnome-shell-extension-appindicator
     ./config-gnome.sh
-    mkdir -p "$HOME"/bin
+    mkdir -p "$HOME/bin"
     for file in "$HOME"/dotfiles/gnome/*; do
         ln -sf "$file" "$HOME/bin/${file##/*}"
     done
@@ -30,8 +30,8 @@ sudo mkdir -p /usr/share/fonts/jetbrains-mono
 sudo tar -xzvf "$HOME/dotfiles/fonts/jetbrains-mono-nf.tar.gz" -C /usr/share/fonts/jetbrains-mono
 
 # Symlink fontconfig
-rm -rf "$HOME"/.config/fontconfig
-ln -s "$HOME"/dotfiles/fontconfig "$HOME"/.config/fontconfig
+rm -rf "$HOME/.config/fontconfig"
+ln -s "$HOME/dotfiles/fontconfig" "$HOME/.config/fontconfig"
 
 # Enable additional repos
 sudo dnf install -y \
@@ -61,14 +61,14 @@ sudo install -o root -g root -m 644 caps2esc.yaml /etc/interception/udevmon.d/ca
 sudo systemctl enable --now udevmon
 
 # Install Firefox from Mozilla
-curl -L "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-CA" -o "$HOME"/Downloads/firefox.tar.bz2
-tar -xvjf "$HOME"/Downloads/firefox.tar.bz2
+curl -L "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-CA" -o "$HOME/Downloads/firefox.tar.bz2"
+tar -xvjf "$HOME/Downloads/firefox.tar.bz2"
 sudo rm -rf /opt/firefox
 sudo mv firefox /opt/firefox
 sudo mkdir -p /usr/local/bin
 sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 sudo install -o root -g root -m 644 desktop-entries/firefox.desktop /usr/share/applications/firefox.desktop
-rm -f "$HOME"/Downloads/firefox.tar.bz2
+rm -f "$HOME/Downloads/firefox.tar.bz2"
 echo MOZ_ENABLE_WAYLAND=1 | sudo tee -a /etc/environment
 
 # Install Brave browser
@@ -99,9 +99,9 @@ EOF
 sudo dnf install -y code
 
 # Install tfenv and Terraform
-git clone --depth=1 https://github.com/tfutils/tfenv.git "$HOME"/.tfenv
-"$HOME"/.tfenv/bin/tfenv install latest
-"$HOME"/.tfenv/bin/tfenv use latest
+git clone --depth=1 https://github.com/tfutils/tfenv.git "$HOME/.tfenv"
+"$HOME/.tfenv/bin/tfenv" install latest
+"$HOME/.tfenv/bin/tfenv" use latest
 
 # Add Insync repo and install
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
@@ -122,12 +122,12 @@ fi
 # Install Viber
 sudo rm -rf /opt/viber
 sudo mkdir -p /opt/viber
-curl https://download.cdn.viber.com/desktop/Linux/viber.AppImage -o "$HOME"/Downloads/viber.AppImage
-chmod +x "$HOME"/Downloads/viber.AppImage
-sudo install -o root -g root -m 755 "$HOME"/Downloads/viber.AppImage /opt/viber/
+curl https://download.cdn.viber.com/desktop/Linux/viber.AppImage -o "$HOME/Downloads/viber.AppImage"
+chmod +x "$HOME/Downloads/viber.AppImage"
+sudo install -o root -g root -m 755 "$HOME/Downloads/viber.AppImage" /opt/viber/
 sudo install -o root -g root -m 644 viber.png /opt/viber/
 sudo install -o root -g root -m 644 desktop-entries/viber.desktop /usr/share/applications/viber.desktop
-rm -f "$HOME"/Downloads/viber.AppImage
+rm -f "$HOME/Downloads/viber.AppImage"
 
 # Install Zoom
 sudo dnf install -y https://zoom.us/client/latest/zoom_x86_64.rpm
