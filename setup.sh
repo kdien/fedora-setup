@@ -23,9 +23,11 @@ if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
     done
 fi
 
-# Install Meslo fonts
+# Install nerd fonts
 sudo mkdir -p /usr/share/fonts/meslo-nf
-sudo cp "$HOME"/dotfiles/fonts/Meslo*.ttf "$HOME"/.fonts/meslo-nf
+sudo tar -xzvf "$HOME/dotfiles/fonts/meslo-nf.tar.gz" -C /usr/share/fonts/meslo-nf
+sudo mkdir -p /usr/share/fonts/jetbrains-mono
+sudo tar -xzvf "$HOME/dotfiles/fonts/jetbrains-mono-nf.tar.gz" -C /usr/share/fonts/jetbrains-mono
 
 # Symlink fontconfig
 rm -rf "$HOME"/.config/fontconfig
