@@ -37,12 +37,13 @@ ln -s "$HOME/dotfiles/fontconfig" "$HOME/.config/fontconfig"
 sudo dnf install -y \
     "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
     "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+sudo dnf config-manager -y --add-repo "https://dl.winehq.org/wine-builds/fedora/$(rpm -E %fedora)/winehq.repo"
 
 # Remove bloat
 sudo dnf remove -y $(cat ./pkg.remove)
 
 # Install packages from repo
-sudo dnf install -y $(cat ./pkg.add)
+sudo dnf install -y $(cat ./pkg.add) --exclude $(cat ./pkg.exclude)
 
 # Set up interception-tools and caps2esc
 sudo dnf copr enable -y fszymanski/interception-tools
