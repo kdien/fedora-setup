@@ -1,5 +1,6 @@
 ansible
 bat
+boost-devel
 cmake
 dconf-editor
 fd-find
@@ -19,6 +20,7 @@ java-17-openjdk-devel
 jq
 kitty
 ksnip
+libevdev-devel
 libstdc++
 libstdc++-devel
 libstdc++-static
@@ -34,6 +36,7 @@ remmina
 ripgrep
 rsms-inter-fonts
 ShellCheck
+systemd-devel
 tldr
 transmission
 vim
@@ -41,3 +44,4 @@ vlc
 winehq-stable
 winetricks
 xclip
+yaml-cpp-devel

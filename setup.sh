@@ -45,10 +45,19 @@ sudo dnf remove -y $(cat ./pkg.remove)
 # Install packages from repo
 sudo dnf install -y $(cat ./pkg.add) --exclude $(cat ./pkg.exclude)
 
-# Set up interception-tools and caps2esc
-sudo dnf copr enable -y fszymanski/interception-tools
-sudo dnf install -y interception-tools
+# Set up interception-tools
+git clone https://gitlab.com/interception/linux/tools.git interception-tools
+cd interception-tools || return
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+sudo cp build/{intercept,mux,udevmon,uinput} /usr/local/bin
+sed -i 's|/usr/bin/udevmon|/usr/local/bin/udevmon|' udevmon.service
+sudo cp udevmon.service /usr/lib/systemd/system
+sudo systemctl daemon-reload
+cd ..
+rm -rf interception-tools
 
+# Set up caps2esc
 git clone https://gitlab.com/interception/linux/plugins/caps2esc.git
 cd caps2esc || return
 cmake -B build -DCMAKE_BUILD_TYPE=Release
