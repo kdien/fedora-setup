@@ -91,17 +91,6 @@ sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_curr
 # Override default desktop entry to enable dark mode
 sudo install -o root -g root -m 644 desktop-entries/google-chrome.desktop /usr/local/share/applications/google-chrome.desktop
 
-# Add VS Code repo and install
-sudo tee /etc/yum.repos.d/vscode.repo <<EOF
-[code]
-name=Visual Studio Code
-baseurl=https://packages.microsoft.com/yumrepos/vscode
-enabled=1
-gpgcheck=1
-gpgkey=https://packages.microsoft.com/keys/microsoft.asc
-EOF
-sudo dnf install -y code
-
 # Install tfenv and Terraform
 git clone --depth=1 https://github.com/tfutils/tfenv.git "$HOME/.tfenv"
 "$HOME/.tfenv/bin/tfenv" install latest
