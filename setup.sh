@@ -23,11 +23,13 @@ if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
     done
 fi
 
-# Install nerd fonts
-sudo mkdir -p /usr/share/fonts/meslo-nf
-sudo tar -xzvf "$HOME/dotfiles/fonts/meslo-nf.tar.gz" -C /usr/share/fonts/meslo-nf
-sudo mkdir -p /usr/share/fonts/jetbrains-mono
-sudo tar -xzvf "$HOME/dotfiles/fonts/jetbrains-mono-nf.tar.gz" -C /usr/share/fonts/jetbrains-mono
+# Install nerd fonts symbols
+curl -sSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.tar.xz -o nf-symbols.tar.xz
+tar -xf nf-symbols.tar.xz --wildcards '*.ttf'
+sudo chown root:root ./*.ttf
+sudo mkdir -p /usr/share/fonts/nf-symbols
+sudo mv ./*.ttf /usr/share/fonts/nf-symbols
+rm -f nf-symbols.tar.xz
 
 # Symlink fontconfig
 rm -rf "$HOME/.config/fontconfig"
