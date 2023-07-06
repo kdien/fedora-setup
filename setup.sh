@@ -7,11 +7,17 @@ EOF
 
 # Clone dotfiles and setup symlinks
 git clone https://github.com/kdien/dotfiles.git "$HOME/dotfiles"
-ln -sf "$HOME/dotfiles/tmux/.tmux.conf" "$HOME/.tmux.conf"
-ln -sf "$HOME/dotfiles/neovim" "$HOME/.config/nvim"
-ln -sf "$HOME/dotfiles/alacritty" "$HOME/.config/alacritty"
-ln -sf "$HOME/dotfiles/kitty" "$HOME/.config/kitty"
-ln -sf "$HOME/dotfiles/powershell" "$HOME/.config/powershell"
+configs=(
+    alacritty
+    fontconfig
+    kitty
+    nvim
+    powershell
+    tmux
+)
+for config in "${configs[@]}"; do
+    ln -sf "$HOME/dotfiles/$config" "$HOME/.config/$config"
+done
 
 # Configure GNOME settings
 if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
@@ -37,10 +43,6 @@ sudo chown root:root ./*.ttf
 sudo mkdir -p /usr/share/fonts/meslo-nf
 sudo mv ./*.ttf /usr/share/fonts/meslo-nf
 rm -f meslo.tar.xz
-
-# Symlink fontconfig
-rm -rf "$HOME/.config/fontconfig"
-ln -s "$HOME/dotfiles/fontconfig" "$HOME/.config/fontconfig"
 
 # Enable additional repos
 sudo dnf install -y \
