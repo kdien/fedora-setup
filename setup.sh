@@ -14,6 +14,7 @@ configs=(
     nvim
     powershell
     tmux
+    wezterm
 )
 for config in "${configs[@]}"; do
     ln -sf "$HOME/dotfiles/$config" "$HOME/.config/$config"
@@ -136,3 +137,5 @@ rm -f "$HOME/Downloads/viber.AppImage"
 # Install Zoom
 sudo dnf install -y https://zoom.us/client/latest/zoom_x86_64.rpm
 
+# Install WezTerm
+sudo dnf install -y "$(curl -sSL -H 'Accept: application/vnd.github+json' https://api.github.com/repos/wez/wezterm/releases/latest | jq -r ".assets[] | select(.browser_download_url | match(\"fedora$(rpm -E %fedora).*rpm$\")) | .browser_download_url")"
