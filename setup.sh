@@ -10,7 +10,6 @@ git clone https://github.com/kdien/dotfiles.git "$HOME/dotfiles"
 configs=(
     alacritty
     fontconfig
-    kitty
     nvim
     powershell
     tmux
