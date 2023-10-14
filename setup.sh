@@ -44,6 +44,13 @@ sudo mkdir -p /usr/share/fonts/meslo-nf
 sudo mv ./*.ttf /usr/share/fonts/meslo-nf
 rm -f meslo-nf.tar.xz
 
+curl -sSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraMono.tar.xz -o fira-mono-nf.tar.xz
+tar -xf fira-mono-nf.tar.xz --wildcards 'FiraMonoNerdFont-*.otf'
+sudo chown root:root ./*.otf
+sudo mkdir -p /usr/share/fonts/fira-mono-nf
+sudo mv ./*.otf /usr/share/fonts/fira-mono-nf
+rm -f fira-mono-nf.tar.xz
+
 tar -xf "$HOME/dotfiles/fonts/meslo.tar.gz"
 sudo chown root:root ./*.ttf
 sudo mkdir -p /usr/share/fonts/meslo
