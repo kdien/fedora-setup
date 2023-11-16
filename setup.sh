@@ -20,12 +20,12 @@ for config in "${configs[@]}"; do
 done
 
 # Configure GNOME settings
-if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
+if command -v gnome-shell &>/dev/null; then
     sudo dnf install -y gnome-tweaks gnome-extensions-app gnome-shell-extension-appindicator
     ./config-gnome.sh
     mkdir -p "$HOME/bin"
     for file in "$HOME"/dotfiles/gnome/*; do
-        ln -sf "$file" "$HOME/bin/${file##/*}"
+        ln -sf "$file" "$HOME/bin/$(basename "$file")"
     done
 fi
 
