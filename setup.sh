@@ -30,6 +30,13 @@ if [[ "$XDG_CURRENT_DESKTOP" == *GNOME* ]]; then
 fi
 
 # Install fonts
+for font in meslo meslo-nf; do
+    tar -xf "$HOME/dotfiles/fonts/$font.tar.gz"
+    sudo chown root:root ./*.ttf
+    sudo mkdir -p "/usr/share/fonts/$font"
+    sudo mv ./*.ttf "/usr/share/fonts/$font"
+done
+
 curl -sSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.tar.xz -o nf-symbols.tar.xz
 tar -xf nf-symbols.tar.xz --wildcards '*.ttf'
 sudo chown root:root ./*.ttf
@@ -37,24 +44,12 @@ sudo mkdir -p /usr/share/fonts/nf-symbols
 sudo mv ./*.ttf /usr/share/fonts/nf-symbols
 rm -f nf-symbols.tar.xz
 
-curl -sSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Meslo.tar.xz -o meslo-nf.tar.xz
-tar -xf meslo-nf.tar.xz --wildcards 'MesloLGMNerdFont-*.ttf'
-sudo chown root:root ./*.ttf
-sudo mkdir -p /usr/share/fonts/meslo-nf
-sudo mv ./*.ttf /usr/share/fonts/meslo-nf
-rm -f meslo-nf.tar.xz
-
 curl -sSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraMono.tar.xz -o fira-mono-nf.tar.xz
 tar -xf fira-mono-nf.tar.xz --wildcards 'FiraMonoNerdFont-*.otf'
 sudo chown root:root ./*.otf
 sudo mkdir -p /usr/share/fonts/fira-mono-nf
 sudo mv ./*.otf /usr/share/fonts/fira-mono-nf
 rm -f fira-mono-nf.tar.xz
-
-tar -xf "$HOME/dotfiles/fonts/meslo.tar.gz"
-sudo chown root:root ./*.ttf
-sudo mkdir -p /usr/share/fonts/meslo
-sudo mv ./*.ttf /usr/share/fonts/meslo
 
 # Enable additional repos
 sudo dnf install -y \
