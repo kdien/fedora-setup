@@ -30,11 +30,12 @@ if command -v gnome-shell &>/dev/null; then
 fi
 
 # Install fonts
-for font in meslo meslo-nf; do
-    tar -xf "$HOME/dotfiles/fonts/$font.tar.gz"
+for font in "$HOME"/dotfiles/fonts/*.tar.gz; do
+    name=$(basename "$font" | cut -d '.' -f 1)
+    tar -xf "$font"
     sudo chown root:root ./*.ttf
-    sudo mkdir -p "/usr/share/fonts/$font"
-    sudo mv ./*.ttf "/usr/share/fonts/$font"
+    sudo mkdir -p "/usr/share/fonts/$name"
+    sudo mv ./*.ttf "/usr/share/fonts/$name"
 done
 
 curl -sSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.tar.xz -o nf-symbols.tar.xz
