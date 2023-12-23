@@ -5,6 +5,7 @@ cmake
 dconf-editor
 fd-find
 fzf
+gcc-c++
 git
 git-delta
 htop

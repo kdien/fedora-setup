@@ -131,7 +131,7 @@ sudo mkdir -p /opt/viber
 curl https://download.cdn.viber.com/desktop/Linux/viber.AppImage -o "$HOME/Downloads/viber.AppImage"
 chmod +x "$HOME/Downloads/viber.AppImage"
 sudo install -o root -g root -m 755 "$HOME/Downloads/viber.AppImage" /opt/viber/
-sudo install -o root -g root -m 644 viber.png /opt/viber/
+sudo install -o root -g root -m 644 desktop-entries/viber.png /opt/viber/
 sudo install -o root -g root -m 644 desktop-entries/viber.desktop /usr/share/applications/viber.desktop
 rm -f "$HOME/Downloads/viber.AppImage"
 
