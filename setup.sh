@@ -9,7 +9,6 @@ EOF
 git clone https://github.com/kdien/dotfiles.git "$HOME/dotfiles"
 configs=(
     alacritty
-    fontconfig
     nvim
     powershell
     tmux
@@ -45,13 +44,6 @@ sudo mkdir -p /usr/share/fonts/nf-symbols
 sudo mv ./*.ttf /usr/share/fonts/nf-symbols
 rm -f nf-symbols.tar.xz
 
-curl -sSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraMono.tar.xz -o fira-mono-nf.tar.xz
-tar -xf fira-mono-nf.tar.xz --wildcards 'FiraMonoNerdFont-*.otf'
-sudo chown root:root ./*.otf
-sudo mkdir -p /usr/share/fonts/fira-mono-nf
-sudo mv ./*.otf /usr/share/fonts/fira-mono-nf
-rm -f fira-mono-nf.tar.xz
-
 # Enable additional repos
 sudo dnf install -y \
     "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
@@ -62,7 +54,7 @@ sudo dnf config-manager -y --add-repo "https://dl.winehq.org/wine-builds/fedora/
 sudo dnf remove -y $(cat ./pkg.remove)
 
 # Install packages from repo
-sudo dnf install -y $(cat ./pkg.add) --exclude $(cat ./pkg.exclude)
+sudo dnf install -y $(cat ./pkg.add)
 
 # Set up interception-tools
 git clone https://gitlab.com/interception/linux/tools.git interception-tools
@@ -127,9 +119,11 @@ enabled=1
 metadata_expire=120m
 EOF
 sudo dnf install -y insync
-if command -v nautilus &> /dev/null; then
-    sudo dnf install -y insync-nautilus
-fi
+for filemgr in nautilus dolphin; do
+    if command -v "$filemgr" &>/dev/null; then
+        sudo dnf install -y insync-"$filemgr"
+    fi
+done
 
 # Install Viber
 sudo rm -rf /opt/viber
