@@ -8,12 +8,12 @@ fzf
 gcc-c++
 git
 git-delta
+golang
 htop
 java-1.8.0-openjdk-devel
 java-11-openjdk-devel
 java-17-openjdk-devel
 jq
-ksnip
 libevdev-devel
 maven
 neofetch
@@ -22,6 +22,7 @@ net-tools
 nodejs
 nodejs-npm
 okular
+python3-pip
 remmina
 ripgrep
 rsms-inter-fonts
