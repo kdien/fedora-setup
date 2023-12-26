@@ -5,6 +5,11 @@ cat >> "$HOME/.bashrc" <<'EOF'
 [[ -f "$HOME/dotfiles/bash/.bash_common" ]] && . "$HOME/dotfiles/bash/.bash_common"
 EOF
 
+# SSH agent for KDE
+if command -v ksshaskpass &>/dev/null; then
+    echo "SSH_ASKPASS=$(command -v ksshaskpass) $(command -v ssh-add) < /dev/null" >> "$HOME/.profile"
+fi
+
 # Clone dotfiles and setup symlinks
 git clone https://github.com/kdien/dotfiles.git "$HOME/dotfiles"
 configs=(
@@ -17,6 +22,9 @@ configs=(
 for config in "${configs[@]}"; do
     ln -sf "$HOME/dotfiles/$config" "$HOME/.config/$config"
 done
+
+# Copy base git config
+cp "$HOME/dotfiles/git/config" "$HOME/.gitconfig"
 
 # Configure GNOME settings
 if command -v gnome-shell &>/dev/null; then
@@ -48,7 +56,6 @@ rm -f nf-symbols.tar.xz
 sudo dnf install -y \
     "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
     "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
-sudo dnf config-manager -y --add-repo "https://dl.winehq.org/wine-builds/fedora/$(rpm -E %fedora)/winehq.repo"
 
 # Remove bloat
 sudo dnf remove -y $(cat ./pkg.remove)
