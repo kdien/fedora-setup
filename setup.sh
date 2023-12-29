@@ -114,6 +114,12 @@ git clone --depth=1 https://github.com/tfutils/tfenv.git "$HOME/.tfenv"
 "$HOME/.tfenv/bin/tfenv" install latest
 "$HOME/.tfenv/bin/tfenv" use latest
 
+# Environment variables for HiDPI for Qt apps
+sudo tee -a /etc/environment <<EOF
+QT_AUTO_SCREEN_SCALE_FACTOR=1
+QT_ENABLE_HIGHDPI_SCALING=1
+EOF
+
 # Add Insync repo and install
 sudo rpm --import https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
 sudo tee /etc/yum.repos.d/insync.repo <<EOF
