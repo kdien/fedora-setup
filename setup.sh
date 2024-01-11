@@ -93,7 +93,6 @@ curl -L "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lan
 tar -xf "$HOME/Downloads/firefox.tar.bz2"
 sudo rm -rf /opt/firefox
 sudo mv firefox /opt/firefox
-sudo chown -R root:root /opt/firefox
 sudo mkdir -p /usr/local/bin
 sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 sudo install -o root -g root -m 644 desktop-entries/firefox.desktop /usr/share/applications/firefox.desktop
