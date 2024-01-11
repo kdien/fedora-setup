@@ -107,8 +107,6 @@ sudo dnf install -y brave-browser
 
 # Install Google Chrome
 sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-# Override default desktop entry to enable dark mode
-sudo install -o root -g root -m 644 desktop-entries/google-chrome.desktop /usr/local/share/applications/google-chrome.desktop
 
 # Install tfenv and Terraform
 git clone --depth=1 https://github.com/tfutils/tfenv.git "$HOME/.tfenv"
