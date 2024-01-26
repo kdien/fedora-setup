@@ -39,18 +39,10 @@ fi
 # Install fonts
 for font in "$HOME"/dotfiles/fonts/*.tar.gz; do
     name=$(basename "$font" | cut -d '.' -f 1)
-    tar -xf "$font"
-    sudo chown root:root ./*.ttf
-    sudo mkdir -p "/usr/share/fonts/$name"
-    sudo mv ./*.ttf "/usr/share/fonts/$name"
+    dest="$HOME/.local/share/fonts/$name"
+    mkdir -p "$dest"
+    tar -xf "$font" --directory="$dest"
 done
-
-curl -sSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.tar.xz -o nf-symbols.tar.xz
-tar -xf nf-symbols.tar.xz --wildcards '*.ttf'
-sudo chown root:root ./*.ttf
-sudo mkdir -p /usr/share/fonts/nf-symbols
-sudo mv ./*.ttf /usr/share/fonts/nf-symbols
-rm -f nf-symbols.tar.xz
 
 # Enable additional repos
 sudo dnf install -y \
