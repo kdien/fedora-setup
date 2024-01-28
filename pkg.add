@@ -20,6 +20,7 @@ java-17-openjdk-devel
 jq
 libevdev-devel
 maven
+mpv
 neofetch
 neovim
 net-tools
@@ -35,6 +36,5 @@ systemd-devel
 tldr
 transmission
 vim
-vlc
 xclip
 yaml-cpp-devel
