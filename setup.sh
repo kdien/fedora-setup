@@ -36,6 +36,12 @@ if command -v gnome-shell &>/dev/null; then
   done
 fi
 
+# Cursor theme fix for Chromium-based browsers on KDE Plasma
+if command -v plasmashell &>/dev/null; then
+  mkdir -p "$HOME/.local/share/icons/default"
+  echo -e '[icon theme]\nInherits=breeze_cursors' >>"$HOME/.local/share/icons/default/index.theme"
+fi
+
 # Install fonts
 for font in "$HOME"/dotfiles/fonts/*.tar.gz; do
   name=$(basename "$font" | cut -d '.' -f 1)
