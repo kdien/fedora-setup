@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 
 # Source bash config
-cat >> "$HOME/.bashrc" <<'EOF'
+cat >>"$HOME/.bashrc" <<'EOF'
 [[ -f "$HOME/dotfiles/bash/.bash_common" ]] && . "$HOME/dotfiles/bash/.bash_common"
 EOF
 
 # SSH agent for KDE
 if command -v ksshaskpass &>/dev/null; then
-    echo "SSH_ASKPASS=$(command -v ksshaskpass) $(command -v ssh-add) < /dev/null" >> "$HOME/.profile"
+  echo "SSH_ASKPASS=$(command -v ksshaskpass) $(command -v ssh-add) < /dev/null" >>"$HOME/.profile"
 fi
 
 # Clone dotfiles and setup symlinks
 git clone https://github.com/kdien/dotfiles.git "$HOME/dotfiles"
 configs=(
-    alacritty
-    nvim
-    powershell
-    tmux
-    wezterm
+  alacritty
+  nvim
+  powershell
+  tmux
+  wezterm
 )
 for config in "${configs[@]}"; do
-    ln -sf "$HOME/dotfiles/$config" "$HOME/.config/$config"
+  ln -sf "$HOME/dotfiles/$config" "$HOME/.config/$config"
 done
 
 # Copy base git config
@@ -28,26 +28,26 @@ cp "$HOME/dotfiles/git/config" "$HOME/.gitconfig"
 
 # Configure GNOME settings
 if command -v gnome-shell &>/dev/null; then
-    sudo dnf install -y gnome-tweaks gnome-extensions-app gnome-shell-extension-appindicator
-    ./config-gnome.sh
-    mkdir -p "$HOME/bin"
-    for file in "$HOME"/dotfiles/gnome/*; do
-        ln -sf "$file" "$HOME/bin/$(basename "$file")"
-    done
+  sudo dnf install -y gnome-tweaks gnome-extensions-app gnome-shell-extension-appindicator
+  ./config-gnome.sh
+  mkdir -p "$HOME/bin"
+  for file in "$HOME"/dotfiles/gnome/*; do
+    ln -sf "$file" "$HOME/bin/$(basename "$file")"
+  done
 fi
 
 # Install fonts
 for font in "$HOME"/dotfiles/fonts/*.tar.gz; do
-    name=$(basename "$font" | cut -d '.' -f 1)
-    dest="$HOME/.local/share/fonts/$name"
-    mkdir -p "$dest"
-    tar -xf "$font" --directory="$dest"
+  name=$(basename "$font" | cut -d '.' -f 1)
+  dest="$HOME/.local/share/fonts/$name"
+  mkdir -p "$dest"
+  tar -xf "$font" --directory="$dest"
 done
 
 # Enable additional repos
 sudo dnf install -y \
-    "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
-    "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+  "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
+  "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 
 # Remove bloat
 sudo dnf remove -y $(cat ./pkg.remove)
@@ -123,9 +123,9 @@ metadata_expire=120m
 EOF
 sudo dnf install -y insync
 for filemgr in nautilus dolphin; do
-    if command -v "$filemgr" &>/dev/null; then
-        sudo dnf install -y insync-"$filemgr"
-    fi
+  if command -v "$filemgr" &>/dev/null; then
+    sudo dnf install -y insync-"$filemgr"
+  fi
 done
 
 # Install Zoom
