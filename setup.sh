@@ -7,7 +7,19 @@ EOF
 
 # SSH agent for KDE
 if command -v ksshaskpass &>/dev/null; then
-  echo "SSH_ASKPASS=$(command -v ksshaskpass) $(command -v ssh-add) < /dev/null" >>"$HOME/.profile"
+  mkdir -p "$HOME/.local/bin"
+  script_path="$HOME/.local/bin/add_ssh_key_to_agent.sh"
+
+  echo "SSH_ASKPASS=$(command -v ksshaskpass) $(command -v ssh-add) </dev/null" >"$script_path"
+
+  cat >"$HOME/.config/autostart/ssh.desktop" <<EOF
+[Desktop Entry]
+Exec=$script_path
+Icon=dialog-scripts
+Name=$(basename "$script_path")
+Type=Application
+X-KDE-AutostartScript=true
+EOF
 fi
 
 # Clone dotfiles and setup symlinks
