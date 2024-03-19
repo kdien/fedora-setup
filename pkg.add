@@ -14,9 +14,8 @@ git-delta
 golang
 htop
 intel-gpu-tools
-java-1.8.0-openjdk-devel
-java-11-openjdk-devel
 java-17-openjdk-devel
+java-21-openjdk-devel
 jq
 libevdev-devel
 maven
