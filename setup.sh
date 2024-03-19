@@ -11,6 +11,7 @@ if command -v ksshaskpass &>/dev/null; then
   script_path="$HOME/.local/bin/add_ssh_key_to_agent.sh"
 
   echo "SSH_ASKPASS=$(command -v ksshaskpass) $(command -v ssh-add) </dev/null" >"$script_path"
+  chmod +x "$script_path"
 
   mkdir -p "$HOME/.config/autostart"
   cat >"$HOME/.config/autostart/ssh.desktop" <<EOF
