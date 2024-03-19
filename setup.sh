@@ -12,6 +12,7 @@ if command -v ksshaskpass &>/dev/null; then
 
   echo "SSH_ASKPASS=$(command -v ksshaskpass) $(command -v ssh-add) </dev/null" >"$script_path"
 
+  mkdir -p "$HOME/.config/autostart"
   cat >"$HOME/.config/autostart/ssh.desktop" <<EOF
 [Desktop Entry]
 Exec=$script_path
