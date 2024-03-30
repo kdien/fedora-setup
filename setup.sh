@@ -112,7 +112,12 @@ rm -f "$HOME/Downloads/firefox.tar.bz2"
 echo MOZ_ENABLE_WAYLAND=1 | sudo tee -a /etc/environment
 
 # Install Brave browser
-sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+sudo tee /etc/yum.repos.d/brave-browser.repo <<EOF
+[brave-browser]
+name=Brave Browser
+baseurl=https://brave-browser-rpm-release.s3.brave.com/$(uname -m)
+enabled=1
+EOF
 sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 sudo dnf install -y brave-browser
 
