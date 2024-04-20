@@ -6,6 +6,7 @@ boost-devel
 cmake
 dconf-editor
 dejavu-sans-mono-fonts
+fastfetch
 fd-find
 fzf
 gcc-c++
@@ -20,7 +21,6 @@ jq
 libevdev-devel
 maven
 mpv
-neofetch
 neovim
 net-tools
 nodejs
