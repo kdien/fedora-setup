@@ -16,9 +16,9 @@ if command -v ksshaskpass &>/dev/null; then
   mkdir -p "$HOME/.config/autostart"
   cat >"$HOME/.config/autostart/ssh.desktop" <<EOF
 [Desktop Entry]
-Exec=$script_path
+Exec=sh $script_path
 Icon=dialog-scripts
-Name=$(basename "$script_path")
+Name=Add SSH key to agent
 Type=Application
 X-KDE-AutostartScript=true
 EOF
