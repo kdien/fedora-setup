@@ -100,17 +100,6 @@ sudo mkdir -p /etc/interception/udevmon.d
 sudo install -o root -g root -m 644 caps2esc.yaml /etc/interception/udevmon.d/caps2esc.yaml
 sudo systemctl enable --now udevmon
 
-# Install Firefox from Mozilla
-curl -L "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-CA" -o "$HOME/Downloads/firefox.tar.bz2"
-tar -xf "$HOME/Downloads/firefox.tar.bz2"
-sudo rm -rf /opt/firefox
-sudo mv firefox /opt/firefox
-sudo mkdir -p /usr/local/bin
-sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
-sudo install -o root -g root -m 644 desktop-entries/firefox.desktop /usr/share/applications/firefox.desktop
-rm -f "$HOME/Downloads/firefox.tar.bz2"
-echo MOZ_ENABLE_WAYLAND=1 | sudo tee -a /etc/environment
-
 # Install Brave browser
 sudo tee /etc/yum.repos.d/brave-browser.repo <<EOF
 [brave-browser]
