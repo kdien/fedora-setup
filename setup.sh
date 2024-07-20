@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Disable power button
+sudo mkdir -p /etc/systemd/logind.conf.d
+sudo tee /etc/systemd/logind.conf.d/poweroff.conf <<EOF
+[Login]
+HandlePowerKey=ignore
+EOF
+
 # Source bash config
 cat >>"$HOME/.bashrc" <<'EOF'
 [[ -f "$HOME/dotfiles/bash/.bash_common" ]] && . "$HOME/dotfiles/bash/.bash_common"
