@@ -35,10 +35,14 @@ fi
 git clone https://github.com/kdien/dotfiles.git "$HOME/dotfiles"
 configs=(
   alacritty
+  hypr
   nvim
   powershell
+  swaylock
   tmux
+  waybar
   wezterm
+  wlogout
 )
 for config in "${configs[@]}"; do
   ln -sf "$HOME/dotfiles/$config" "$HOME/.config/$config"
