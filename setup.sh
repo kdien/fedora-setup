@@ -35,6 +35,7 @@ fi
 git clone https://github.com/kdien/dotfiles.git "$HOME/dotfiles"
 configs=(
   alacritty
+  fuzzel
   hypr
   nvim
   powershell
