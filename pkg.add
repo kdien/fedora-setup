@@ -13,11 +13,13 @@ gcc-c++
 git
 git-delta
 golang
+gtk4-devel
 htop
 intel-gpu-tools
 java-17-openjdk-devel
 java-21-openjdk-devel
 jq
+libadwaita-devel
 libevdev-devel
 mpv
 neovim

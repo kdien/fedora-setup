@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2046
 
 # Disable power button
 sudo mkdir -p /etc/systemd/logind.conf.d
@@ -36,6 +37,7 @@ git clone https://github.com/kdien/dotfiles.git "$HOME/dotfiles"
 configs=(
   alacritty
   fuzzel
+  ghostty
   hypr
   nvim
   powershell
