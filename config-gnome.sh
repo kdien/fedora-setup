@@ -20,7 +20,7 @@ gsettings set org.gnome.desktop.privacy remove-old-temp-files true
 gsettings set org.gnome.desktop.privacy remove-old-trash-files true
 gsettings set org.gnome.desktop.session idle-delay 900
 gsettings set org.gnome.desktop.sound input-feedback-sounds false
-gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q']"
+gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q', '<Alt>q']"
 gsettings set org.gnome.desktop.wm.keybindings show-desktop "['<Super>d']"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "[]"
