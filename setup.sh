@@ -41,6 +41,7 @@ configs=(
   hypr
   nvim
   powershell
+  starship
   swaylock
   tmux
   waybar
