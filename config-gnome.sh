@@ -1,4 +1,5 @@
 gsettings set org.gnome.desktop.datetime automatic-timezone true
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_shifted_capslock']"
 gsettings set org.gnome.desktop.interface clock-format '12h'
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
