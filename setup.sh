@@ -90,31 +90,6 @@ sudo dnf remove -y $(cat ./pkg.remove)
 # Install packages from repo
 sudo dnf install -y $(cat ./pkg.add)
 
-# Set up interception-tools
-git clone https://gitlab.com/interception/linux/tools.git interception-tools
-cd interception-tools || return
-cmake -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-sudo cp build/{intercept,mux,udevmon,uinput} /usr/local/bin
-sed -i 's|/usr/bin/udevmon|/usr/local/bin/udevmon|' udevmon.service
-sudo cp udevmon.service /usr/lib/systemd/system
-sudo systemctl daemon-reload
-cd ..
-rm -rf interception-tools
-
-# Set up caps2esc
-git clone https://gitlab.com/interception/linux/plugins/caps2esc.git
-cd caps2esc || return
-cmake -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-sudo cp build/caps2esc /usr/local/bin
-cd ..
-rm -rf caps2esc
-
-sudo mkdir -p /etc/interception/udevmon.d
-sudo install -o root -g root -m 644 caps2esc.yaml /etc/interception/udevmon.d/caps2esc.yaml
-sudo systemctl enable --now udevmon
-
 # Install Brave browser
 sudo tee /etc/yum.repos.d/brave-browser.repo <<EOF
 [brave-browser]
