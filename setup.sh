@@ -90,23 +90,8 @@ sudo dnf remove -y $(cat ./pkg.remove)
 # Install packages from repo
 sudo dnf install -y $(cat ./pkg.add)
 
-# Install Brave browser
-sudo tee /etc/yum.repos.d/brave-browser.repo <<EOF
-[brave-browser]
-name=Brave Browser
-baseurl=https://brave-browser-rpm-release.s3.brave.com/$(uname -m)
-enabled=1
-EOF
-sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-sudo dnf install -y brave-browser
-
 # Install Google Chrome
 sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-
-# Install tfenv and Terraform
-git clone --depth=1 https://github.com/tfutils/tfenv.git "$HOME/.tfenv"
-"$HOME/.tfenv/bin/tfenv" install latest
-"$HOME/.tfenv/bin/tfenv" use latest
 
 # Environment variables for HiDPI for Qt apps
 sudo tee -a /etc/environment <<EOF
@@ -134,12 +119,3 @@ done
 
 # Install Zoom
 sudo dnf install -y https://zoom.us/client/latest/zoom_x86_64.rpm
-
-# Install WezTerm
-sudo dnf install -y "$(
-  curl -sSLH 'Accept: application/vnd.github+json' \
-    https://api.github.com/repos/wez/wezterm/releases/latest \
-    | jq -r \
-      ".assets[] | select(.browser_download_url | match(\"fedora$(rpm -E %fedora).*rpm$\")) \
-        | .browser_download_url"
-)"
