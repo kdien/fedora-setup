@@ -90,6 +90,12 @@ sudo dnf remove -y $(cat ./pkg.remove)
 # Install packages from repo
 sudo dnf install -y $(cat ./pkg.add)
 
+# Install neovim
+sudo mkdir -p /opt/nvim
+sudo curl -sSLo /opt/nvim/nvim https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.appimage
+sudo chmod +x /opt/nvim/nvim
+sudo ln -s /opt/nvim/nvim /usr/local/bin/nvim
+
 # Install Google Chrome
 sudo dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
